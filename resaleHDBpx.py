@@ -55,9 +55,9 @@ def hs(update, context):
     df.drop('model', axis=1, inplace=True)
     dft=tabulate(df, headers='keys', tablefmt='plain', numalign='left')
     context.bot.send_message(chat_id=update.effective_chat.id, text=dft)
-    ## copy search results to gist
+    ## copy query to gist
     query_url = "https://api.github.com/gists/"+GID+"/comments"
-    data = {"body": dft}
+    data = {"body": q}
     headers = {'Authorization': f'token {GTOKEN}'}
     r = requests.post(query_url, headers=headers, data=json.dumps(data))
 
